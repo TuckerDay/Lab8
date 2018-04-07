@@ -6,7 +6,7 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package game;
+package Game;
 import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;

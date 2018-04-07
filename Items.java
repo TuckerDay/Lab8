@@ -6,13 +6,32 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package game;
+package Game;
 
-public class Items extends Character {
+import javax.swing.ImageIcon;
 
-	public Items(int x, int y, String imagePath, MainPanel myPanel) {
-		super(x, y, imagePath, myPanel);
+public class Items {
+
+	private int x;
+	private int y;
+	private ImageIcon itemImage;
+	
+	public Items(int x, int y, ImageIcon itemImage) {
+		this.x = x;
+		this.y = y;
+		this.itemImage = itemImage;
 		
 	}
+	
+	public int getX() {
+		return x;
+	}
 
+	public int getY() {
+		return y;
+	}
+
+	public ImageIcon getImageIcon() {
+		return itemImage;
+	}
 }

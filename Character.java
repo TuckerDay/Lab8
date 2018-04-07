@@ -6,7 +6,7 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package game;
+package Game;
 
 import javax.swing.ImageIcon;
 
@@ -28,11 +28,11 @@ public class Character {
 	}
 	
 	// Methods
-	public int getx() {
+	public int getX() {
 		return x;
 	}
 	
-	public int gety() {
+	public int getY() {
 		return y;
 	}
 	
@@ -40,11 +40,11 @@ public class Character {
 		return imagePath;
 	}
 	
-	public void setx(int x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 	
-	public void sety(int y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 	

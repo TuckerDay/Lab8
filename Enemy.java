@@ -6,23 +6,49 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package game;
+package Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-public class Enemy extends Character {
-	
+public class Enemy {
+	private int x;
+	private int y;
+	private String imagePath;
+	private MainPanel myPanel;
 	private Player myPlayer;
 	private boolean hasCollidedWithPlayer = false;
 	
 	private Timer myTimer = new Timer(1200, new timerListener());
-
-	public Enemy(int x, int y, String imagePath, MainPanel myPanel) {
-		super(x, y, imagePath, myPanel);
+	public Enemy(int x, int y, String imagePath, MainPanel myPanel)
+	{
+		this.x = x;
+		this.y  = y;
+		this.imagePath = imagePath;
+		this.myPanel = myPanel;
 		myTimer.start();
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 	public void setPlayer(Player myPlayer)
@@ -49,26 +75,26 @@ public class Enemy extends Character {
 				myTimer.stop();
 			}
 			// this just looks for where the player is and then moves toward them
-			if(x > myPlayer.getx())
+			if(x > myPlayer.getX())
 			{
 				x-=100;
 			}
-			if(x < myPlayer.getx())
+			if(x < myPlayer.getX())
 			{
 				x+=100;
 			}
-			if(y > myPlayer.gety())
+			if(y > myPlayer.getY())
 			{
 				y-=100;
 			}
-			if(y < myPlayer.gety())
+			if(y < myPlayer.getY())
 			{
 				y+=100;
 			}
 
 			// notice how we check collision from the enemy and the player
-			hasCollidedWithPlayer = areRectsColliding(x,x+100, y, y+100, myPlayer.getx(), 
-					myPlayer.getx() + 100, myPlayer.gety(), myPlayer.gety() + 100);
+			hasCollidedWithPlayer = areRectsColliding(x,x+100, y, y+100, myPlayer.getX(), 
+					myPlayer.getX() + 100, myPlayer.getY(), myPlayer.getY() + 100);
 			if(hasCollidedWithPlayer)
 			{
 				myTimer.stop();
@@ -88,5 +114,4 @@ public class Enemy extends Character {
 			return false;
 		}
 	}
-
 }
