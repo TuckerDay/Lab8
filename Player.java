@@ -11,17 +11,12 @@ package Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Player implements KeyListener {
+public class Player extends Character implements KeyListener {
 
-	private int x;
-	private int y;
-	private String imagePath;
-	private MainPanel myPanel;
 	private Enemy myEnemy;
 	private boolean hasCollidedWithEnemy = false;
-	private int playerMovement = 5;
 	private int sizeOfImage = 100;
-	private int sizeOfItems = 50;
+	private int sizeOfItems = 100;
 	private boolean restart = false;
 	
 	private Items[] myItems;
@@ -31,34 +26,11 @@ public class Player implements KeyListener {
 	private boolean respondToKeys = true;
 	private Movement myMove = new Movement();
 	
+	// Constructor
 	public Player(int x, int y, String imagePath, MainPanel myPanel) {
-		this.x = x;
-		this.y = y;
-		this.imagePath = imagePath;
-		this.myPanel = myPanel;
+		super(x, y, imagePath, myPanel);
 		myPanel.addKeyListener(this);
 		myPanel.setFocusable(true);
-	}
-	
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 	public void setEnemy(Enemy myEnemy) {
