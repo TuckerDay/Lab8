@@ -7,13 +7,15 @@
 //***************************************************************
 
 package game;
+import java.io.FileNotFoundException;
+
 import javax.swing.JFrame;
 
 public class MainFrame {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
-		JFrame myFrame = new JFrame("Game Time");
+		JFrame myFrame = new JFrame("Grid Game!");
 		
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
