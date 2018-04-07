@@ -13,42 +13,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-public class Enemy {
-	private int x;
-	private int y;
-	private String imagePath;
-	private MainPanel myPanel;
+public class Enemy extends Character {
+	
 	private Player myPlayer;
 	private boolean hasCollidedWithPlayer = false;
 	
 	private Timer myTimer = new Timer(1200, new timerListener());
+	
+	// Constructor
 	public Enemy(int x, int y, String imagePath, MainPanel myPanel)
 	{
-		this.x = x;
-		this.y  = y;
-		this.imagePath = imagePath;
-		this.myPanel = myPanel;
+		super(x, y, imagePath, myPanel);
 		myTimer.start();
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 	
 	public void setPlayer(Player myPlayer)
