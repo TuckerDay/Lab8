@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Game.java
@@ -6,14 +7,11 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package Game;
-
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
-
 import javax.swing.ImageIcon;
 
 public class Game {
@@ -26,10 +24,13 @@ public class Game {
 	private int originalPlayerY = 100;
 	private int originalEnemyX = 500;
 	private int originalEnemyY = 500;
+	private Wall[][] WallArray = new Wall[7][12];
 	private MainPanel mainPanel;
 	private int xWidth = 700;
 	private int yHeight = 700;
 	private int sizeOfFood = 100;
+	int[][] mapArray;
+	Wall myWall;
 	
 	// Constructor
 	public Game(MainPanel mainPanel) throws FileNotFoundException {
@@ -39,12 +40,13 @@ public class Game {
 		// Create Map
 		MapBuilder mapBuild = new MapBuilder();
 		mapBuild.mapGen();
-		int[][] mapArray = mapBuild.getMapArray();
+		mapArray = mapBuild.getMapArray();
+		createWalls();
 		
 		// choose a player from one of two files
 		createPlayer();
 
-		myEnemy = new Enemy(500, 500, "./src/images/enemy.jpg", mainPanel);
+		myEnemy = new Enemy(500, 600, mainPanel, "./src/images/enemy.jpg");
 		
 		// notice how I send information about the enemy into the player here (using the setter)
 		myPlayer.setEnemy(myEnemy);
@@ -75,13 +77,13 @@ public class Game {
 	{
 		Random myRand = new Random();
 		File myFile;
-		File myDir = new File("./src/data");
+		File myDir = new File("./src/files");
 		// get all the files in the directory
 		String[] files = myDir.list();
 		// choose a random file
 		int whichFile = myRand.nextInt(files.length);
 		// open that file
-		myFile= new File("./src/data/" + files[whichFile]);
+		myFile= new File("./src/files/" + files[whichFile]);
 		
 		Scanner myScanner = null;
 		
@@ -101,7 +103,7 @@ public class Game {
 				int x = myLineScanner.nextInt();
 				int y = myLineScanner.nextInt();
 				String path = myLineScanner.next();
-				myPlayer = new Player(x, y, path, mainPanel);
+				myPlayer = new Player(x, y, mainPanel, path);
 			}
 		}
 	}
@@ -125,8 +127,30 @@ public class Game {
 			
 			Image newImage = rescaleImage(itemIcon,sizeOfFood,sizeOfFood);
 			itemIcon.setImage(newImage);
-			Items myItem = new Items(x,y,itemIcon);
+			Items myItem = new Items(x,y,mainPanel,itemIcon);
 			myItems[i] = myItem;
+		}
+	}
+	
+	public void createWalls()
+	{
+		ImageIcon wallIcon = new ImageIcon("./src/images/wall.jpg");
+		Image newImage = rescaleImage(wallIcon,100,100);
+		wallIcon.setImage(newImage);
+		for(int i = 0; i <mapArray.length; i++)
+		{
+			for (int j=0; j<mapArray[i].length; j++)
+			{
+				if (mapArray[i][j] == 1)
+				{
+					Wall myWall = new Wall(j*100,i*100,mainPanel,wallIcon);
+					WallArray[i][j] = myWall;
+				}
+				else
+				{
+					WallArray[i][j] = null;
+				}
+			}
 		}
 	}
 	
@@ -167,6 +191,11 @@ public class Game {
 		return myItems;
 	}
 	
+	public Wall[][] getWallArray()
+	{
+		return WallArray;
+	}
+
 	public HighScores getHighScores()
 	{
 		return myHighScores;

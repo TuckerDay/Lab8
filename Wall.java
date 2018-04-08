@@ -9,17 +9,17 @@ package game;
 
 import javax.swing.ImageIcon;
 
-public class Items extends Character {
+public class Wall extends Character {
 
-	private ImageIcon itemImage;
+	private ImageIcon wallImage;
 	
-	public Items(int x, int y, MainPanel myPanel, ImageIcon itemImage) {
+	public Wall(int x, int y, MainPanel myPanel, ImageIcon wallImage) {
 		super(x, y, myPanel);
-		this.itemImage = itemImage;
+		this.wallImage = wallImage;
 		
 	}
 
 	public ImageIcon getImageIcon() {
-		return itemImage;
+		return wallImage;
 	}
 }

@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: MainFrame.java
@@ -6,7 +7,6 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package Game;
 import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;

@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Character.java
@@ -6,8 +7,6 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package Game;
-
 import javax.swing.ImageIcon;
 
 public class Character {
@@ -15,15 +14,13 @@ public class Character {
 	// Variables
 	protected int x;
 	protected int y;
-	private String imagePath;
 	protected MainPanel myPanel;
 	
 	// Constructor
-	public Character(int x, int y, String imagePath, MainPanel myPanel)
+	public Character(int x, int y, MainPanel myPanel)
 	{
 		this.x = x;
 		this.y = y;
-		this.imagePath = imagePath;
 		this.myPanel = myPanel;
 	}
 	
@@ -34,10 +31,6 @@ public class Character {
 	
 	public int getY() {
 		return y;
-	}
-	
-	public String getImagePath() {
-		return imagePath;
 	}
 	
 	public void setX(int x) {

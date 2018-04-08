@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: MapBuilder.java
@@ -5,8 +6,6 @@
 //Purpose: This class reads a text file to create a map array
 //Last Changed Date: 3/10/18
 //***************************************************************
-
-package Game;
 
 import java.io.File;
 import java.io.FileNotFoundException;

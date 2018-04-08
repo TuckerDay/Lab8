@@ -1,4 +1,11 @@
-package Game;
+package game;
+//***************************************************************
+//Author: Tucker Day and Catey Meador
+//File: Item.java
+//
+//Purpose: Item Class for Lab 8
+//Last Changed Date: 3/10/18
+//***************************************************************
 
 public class Movement {
 
@@ -23,7 +30,4 @@ public class Movement {
 	{
 		return distance;
 	}
-	
-	
-	
 }

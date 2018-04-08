@@ -1,13 +1,4 @@
-//***************************************************************
-//Author: Tucker Day and Catey Meador
-//File: MainPanel.java
-//
-//Purpose: Panel Class for Lab 8
-//Last Changed Date: 3/10/18
-//***************************************************************
-
-package Game;
-
+package game;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,8 +10,8 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+public class MainPanel extends JPanel{
 
-public class MainPanel extends JPanel {
 
 	// Variables
 	private JButton myButton;
@@ -78,14 +69,25 @@ public class MainPanel extends JPanel {
 		// print out the all the items
 		for(int i = 0; i < myGame.getItems().length; i++)
 		{
-		
 			if(myGame.getItems()[i] != null)
 			{
-				page.drawImage(myGame.getItems()[i].getImageIcon().getImage(),
-						myGame.getItems()[i].getX(), myGame.getItems()[i].getY(), null);	
+				page.drawImage(myGame.getItems()[i].getImageIcon().getImage(), myGame.getItems()[i].getX(), myGame.getItems()[i].getY(), null);	
 			}
 			
 		}
+		
+		//print out walls
+		for(int i = 0; i < myGame.getWallArray().length; i++)
+		{
+			for (int j = 0; j < myGame.getWallArray()[i].length; j++)
+			{
+				if(myGame.getWallArray()[i][j] != null)
+				{
+					page.drawImage(myGame.getWallArray()[i][j].getImageIcon().getImage(), myGame.getWallArray()[i][j].getX(), myGame.getWallArray()[i][j].getY(), null);
+				}
+			}
+		}
+		
 		
 		// print out the score
 		page.setFont(new Font("Arial", Font.BOLD, 32));
@@ -106,8 +108,7 @@ public class MainPanel extends JPanel {
 		Collections.sort(scores, Collections.reverseOrder());
 		for(int i = 0; i < 3; i++)
 		{	
-			page.drawString("Score " + (i+1) + ": " + myGame.getHighScores().getScores().get(i),
-					50, ((i+1)*60));
+			page.drawString("Score " + (i+1) + ": " + myGame.getHighScores().getScores().get(i),50, ((i+1)*60));
 		}
 	}
 

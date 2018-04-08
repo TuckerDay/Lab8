@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Enemy.java
@@ -6,8 +7,6 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package Game;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,16 +14,22 @@ import javax.swing.Timer;
 
 public class Enemy extends Character {
 	
+	private String imagePath;
 	private Player myPlayer;
 	private boolean hasCollidedWithPlayer = false;
 	
 	private Timer myTimer = new Timer(1200, new timerListener());
 	
-	// Constructor
-	public Enemy(int x, int y, String imagePath, MainPanel myPanel)
+	public Enemy(int x, int y, MainPanel myPanel, String imagePath)
 	{
-		super(x, y, imagePath, myPanel);
+		super(x, y, myPanel);
+		this.imagePath = imagePath;
 		myTimer.start();
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
 	}
 	
 	public void setPlayer(Player myPlayer)

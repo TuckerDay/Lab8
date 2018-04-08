@@ -1,3 +1,4 @@
+package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Player.java
@@ -6,17 +7,17 @@
 //Last Changed Date: 3/10/18
 //***************************************************************
 
-package Game;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Player extends Character implements KeyListener {
 
+	private String imagePath;
 	private Enemy myEnemy;
 	private boolean hasCollidedWithEnemy = false;
+	private int playerMovement = 5;
 	private int sizeOfImage = 100;
-	private int sizeOfItems = 100;
+	private int sizeOfItems = 50;
 	private boolean restart = false;
 	
 	private Items[] myItems;
@@ -26,11 +27,17 @@ public class Player extends Character implements KeyListener {
 	private boolean respondToKeys = true;
 	private Movement myMove = new Movement();
 	
-	// Constructor
-	public Player(int x, int y, String imagePath, MainPanel myPanel) {
-		super(x, y, imagePath, myPanel);
+	public Player(int x, int y, MainPanel myPanel, String imagePath) {
+		super(x, y, myPanel);
+		this.imagePath = imagePath;
 		myPanel.addKeyListener(this);
 		myPanel.setFocusable(true);
+	}
+	
+
+
+	public String getImagePath() {
+		return imagePath;
 	}
 
 	public void setEnemy(Enemy myEnemy) {
