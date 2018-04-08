@@ -131,7 +131,7 @@ public class Game {
 			myItems[i] = myItem;
 		}
 	}
-	
+	//creates a Wall() object and places it in a Wall Array for every 1 in the mapArray
 	public void createWalls()
 	{
 		ImageIcon wallIcon = new ImageIcon("./src/images/wall.jpg");
