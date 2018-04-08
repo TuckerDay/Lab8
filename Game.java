@@ -24,7 +24,7 @@ public class Game {
 	private int originalPlayerY = 100;
 	private int originalEnemyX = 500;
 	private int originalEnemyY = 500;
-	private Wall[][] WallArray = new Wall[7][12];
+	private Wall[][] WallArray = new Wall[7][11];
 	private MainPanel mainPanel;
 	private int xWidth = 700;
 	private int yHeight = 700;
@@ -131,28 +131,30 @@ public class Game {
 			myItems[i] = myItem;
 		}
 	}
-	//creates a Wall() object and places it in a Wall Array for every 1 in the mapArray
+	
+	//creates a Wall() object and places it in the WallArray for every 1 in the mapArray
 	public void createWalls()
 	{
 		ImageIcon wallIcon = new ImageIcon("./src/images/wall.jpg");
 		Image newImage = rescaleImage(wallIcon,100,100);
 		wallIcon.setImage(newImage);
-		for(int i = 0; i <mapArray.length; i++)
+		for (int i = 0; i < mapArray.length; i++)
 		{
-			for (int j=0; j<mapArray[i].length; j++)
+			for (int j = 0; j < mapArray[i].length; j++)
 			{
 				if (mapArray[i][j] == 1)
 				{
-					Wall myWall = new Wall(j*100,i*100,mainPanel,wallIcon);
+					myWall = new Wall(j*100, i*100, mainPanel, wallIcon);
 					WallArray[i][j] = myWall;
 				}
-				else
+				else if (mapArray[i][j] == 0)
 				{
 					WallArray[i][j] = null;
 				}
 			}
 		}
 	}
+	
 	
 	// this just resets everything back to the beginning
 	public void restart()

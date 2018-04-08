@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class MapBuilder {
 	
 	final int ROWS = 7;
-	final int COLUMNS = 12;
+	final int COLUMNS = 11;
 	int[][] mapArray = new int[ROWS][COLUMNS];
 	
 	public void mapGen() throws FileNotFoundException {	
@@ -34,25 +34,15 @@ public class MapBuilder {
 		// Scanner for File
 		Scanner mapScan = new Scanner(mapFile);
 		
-		while (mapScan.hasNextLine())
+		for (int row = 0; row < 7; row++)
 		{
-			//Set up scanner
 			String line = mapScan.nextLine();		
 			Scanner myLineScanner = new Scanner(line);
 			myLineScanner.useDelimiter(",");
-			
-			// Initialize counters for navigating array
-			int row = 0;
-			int col = 0;
-			
-			// Populate array with values from file
-			while(myLineScanner.hasNext())
+			for (int col = 0; col < 11; col++)
 			{
 				mapArray[row][col] = myLineScanner.nextInt();
-				col++;
 			}
-			col = 0;
-			row ++;
 		}
 	}
 	

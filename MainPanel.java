@@ -18,7 +18,7 @@ public class MainPanel extends JPanel{
 	private JPanel startPanel;
 	private Game myGame;
 	private int HEIGHT = 700;
-	private int WIDTH = 1200;
+	private int WIDTH = 1100;
 	
 	//Constructor
 	public MainPanel() throws FileNotFoundException
@@ -76,7 +76,7 @@ public class MainPanel extends JPanel{
 			
 		}
 		
-		//print out walls
+		//prints out walls for every Wall object in the wallArray
 		for(int i = 0; i < myGame.getWallArray().length; i++)
 		{
 			for (int j = 0; j < myGame.getWallArray()[i].length; j++)
