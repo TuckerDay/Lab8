@@ -1,4 +1,11 @@
 package game;
+//***************************************************************
+//Author: Tucker Day and Catey Meador
+//File: HighScores.java
+//Purpose: HighScores Class for Lab 8
+//Last Changed Date: 4/7/18
+//***************************************************************
+
 import java.util.ArrayList;
 import java.util.Collections;
 

@@ -2,9 +2,8 @@ package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Character.java
-//
-//Purpose: This class will be extended by player, enemy, and item
-//Last Changed Date: 3/10/18
+//Purpose: This class will be extended by player, enemy, wall, and item
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import javax.swing.ImageIcon;

@@ -1,4 +1,11 @@
 package game;
+//***************************************************************
+//Author: Tucker Day and Catey Meador
+//File: MainPanel.java
+//Purpose: Controls display of objects
+//Last Changed Date: 4/7/18
+//***************************************************************
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -111,8 +118,6 @@ public class MainPanel extends JPanel{
 			page.drawString("Score " + (i+1) + ": " + myGame.getHighScores().getScores().get(i),50, ((i+1)*60));
 		}
 	}
-
-	
 	
 
 private class buttonListener implements ActionListener

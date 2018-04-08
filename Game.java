@@ -2,9 +2,8 @@ package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Game.java
-//
 //Purpose: Game Class for Lab 8
-//Last Changed Date: 3/10/18
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import java.awt.Image;
@@ -45,6 +44,7 @@ public class Game {
 		
 		// choose a player from one of two files
 		createPlayer();
+		myPlayer.setWalls(WallArray);
 
 		myEnemy = new Enemy(500, 600, mainPanel, "./src/images/enemy.jpg");
 		

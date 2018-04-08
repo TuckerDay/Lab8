@@ -2,9 +2,8 @@ package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: MapBuilder.java
-//
 //Purpose: This class reads a text file to create a map array
-//Last Changed Date: 3/10/18
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import java.io.File;
@@ -34,6 +33,7 @@ public class MapBuilder {
 		// Scanner for File
 		Scanner mapScan = new Scanner(mapFile);
 		
+		//populates mapArray
 		for (int row = 0; row < 7; row++)
 		{
 			String line = mapScan.nextLine();		

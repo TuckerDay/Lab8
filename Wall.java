@@ -1,10 +1,9 @@
 package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
-//File: Item.java
-//
-//Purpose: Item Class for Lab 8
-//Last Changed Date: 3/10/18
+//File: Wall.java
+//Purpose: Wall Class for Lab 8
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import javax.swing.ImageIcon;
@@ -19,6 +18,11 @@ public class Wall extends Character {
 		
 	}
 
+	public String toString()
+	{
+		return "x: " + x + "\ny: " + y;
+	}
+	
 	public ImageIcon getImageIcon() {
 		return wallImage;
 	}

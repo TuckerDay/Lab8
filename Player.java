@@ -2,9 +2,8 @@ package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Player.java
-//
 //Purpose: Player class for Lab 8
-//Last Changed Date: 3/10/18
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import java.awt.event.KeyEvent;
@@ -17,7 +16,7 @@ public class Player extends Character implements KeyListener {
 	private boolean hasCollidedWithEnemy = false;
 	private int playerMovement = 5;
 	private int sizeOfImage = 100;
-	private int sizeOfItems = 50;
+	private int sizeOfItems = 100;
 	private boolean restart = false;
 	
 	private Items[] myItems;
@@ -26,6 +25,8 @@ public class Player extends Character implements KeyListener {
 	private boolean isGameOver = false;
 	private boolean respondToKeys = true;
 	private Movement myMove = new Movement();
+	private Wall[][] WallArray;
+	private boolean hasCollidedWithWall=false;
 	
 	public Player(int x, int y, MainPanel myPanel, String imagePath) {
 		super(x, y, myPanel);
@@ -46,8 +47,12 @@ public class Player extends Character implements KeyListener {
 	
 	public void setItems(Items[] myItems)
 	{
-		this.myItems = myItems;
-		
+		this.myItems = myItems;	
+	}
+	
+	public void setWalls(Wall[][] WallArray)
+	{
+		this.WallArray = WallArray;
 	}
 	public boolean hasThePlayerCollidedWithEnemy()
 	{
@@ -94,29 +99,58 @@ public class Player extends Character implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (arg0.getKeyCode() == KeyEvent.VK_LEFT)
+		{
 			setX(getX() + myMove.moveLeft());
+			checkCollisionWithWalls();
+			if (hasCollidedWithWall==true)
+			{
+				setX(getX() + myMove.moveRight());
+				hasCollidedWithWall=false;
+			}
 		}
 
-		else if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
+		else if (arg0.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
 			setX(getX() + myMove.moveRight());
+			checkCollisionWithWalls();
+			if (hasCollidedWithWall==true)
+			{
+				setX(getX() + myMove.moveLeft());
+				hasCollidedWithWall=false;
+			}
 		}
 
-		else if (arg0.getKeyCode() == KeyEvent.VK_UP) {
+		else if (arg0.getKeyCode() == KeyEvent.VK_UP)
+		{
 			setY(getY() + myMove.moveUp());
+			checkCollisionWithWalls();
+			if (hasCollidedWithWall==true)
+			{
+				setX(getX() + myMove.moveDown());
+				hasCollidedWithWall=false;
+			}
 		}
 
-		else if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
+		else if (arg0.getKeyCode() == KeyEvent.VK_DOWN)
+		{
 			setY(getY() + myMove.moveDown());
+			checkCollisionWithWalls();
+			if (hasCollidedWithWall==true)
+			{
+				setX(getX() + myMove.moveUp());
+				hasCollidedWithWall=false;
+			}
 		}
-		else if (arg0.getKeyCode() == KeyEvent.VK_R) {
+
+		else if (arg0.getKeyCode() == KeyEvent.VK_R)
+		{
 			restart = true;
 			myPanel.repaint();
 		}
 		
 		// this check for collision on each movement
-		hasCollidedWithEnemy = areRectsColliding(x,x+sizeOfImage,y,y+sizeOfImage,myEnemy.getX(), 
-				myEnemy.getX()+sizeOfImage,myEnemy.getY(), myEnemy.getY()+sizeOfImage);
+		hasCollidedWithEnemy = areRectsColliding(x,x+sizeOfImage,y,y+sizeOfImage,myEnemy.getX(), myEnemy.getX()+sizeOfImage,myEnemy.getY(), myEnemy.getY()+sizeOfImage);
 		if(hasCollidedWithEnemy)
 		{
 			isGameOver = true;
@@ -153,9 +187,7 @@ public class Player extends Character implements KeyListener {
 			// if we do collide, we are making that space null, so we have to make sure we skip the null ones
 			if(myItems[i] != null)
 			{
-				boolean testCollision = areRectsColliding(x, x+sizeOfImage,y,y+sizeOfImage,
-						myItems[i].getX(), myItems[i].getX() + sizeOfItems, myItems[i].getY(),
-						myItems[i].getY() + sizeOfItems);
+				boolean testCollision = areRectsColliding(x, x+sizeOfImage,y,y+sizeOfImage, myItems[i].getX(), myItems[i].getX() + sizeOfItems, myItems[i].getY(), myItems[i].getY() + sizeOfItems);
 				if(testCollision)
 				{
 					currentScore++;
@@ -166,6 +198,24 @@ public class Player extends Character implements KeyListener {
 		}
 	}
 	
+	//Checks for collisions with walls
+	
+	public void checkCollisionWithWalls()
+	{
+		for(int i = 0; i < WallArray.length; i++)
+		{
+			for (int j = 0; j < WallArray[i].length; j++)
+			{
+				if(WallArray[i][j] != null)
+				{
+					if (getX()== i*100 && getY() == j*100)
+					{
+						hasCollidedWithWall = true;
+					}
+				}
+			}
+		}
+	}
 	
 	@Override
 	public void keyReleased(KeyEvent arg0) {

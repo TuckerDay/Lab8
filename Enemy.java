@@ -2,9 +2,8 @@ package game;
 //***************************************************************
 //Author: Tucker Day and Catey Meador
 //File: Enemy.java
-//
 //Purpose: Enemy Class for Lab 8
-//Last Changed Date: 3/10/18
+//Last Changed Date: 4/7/18
 //***************************************************************
 
 import java.awt.event.ActionEvent;
